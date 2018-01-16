@@ -57,6 +57,9 @@
       "inlineTemplate": true,
       "flat": true,
       "spec": false
+    },
+    "serve": {
+      "port": 4444
     }
   }
 }

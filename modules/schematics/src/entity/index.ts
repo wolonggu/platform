@@ -38,6 +38,7 @@ export default function(options: EntityOptions): Rule {
       options.spec ? noop() : filter(path => !path.endsWith('__spec.ts')),
       template({
         ...stringUtils,
+        'if-flat': (s: string) => (options.flat ? '' : s),
         ...(options as object),
         dot: () => '.',
       }),
@@ -45,8 +46,8 @@ export default function(options: EntityOptions): Rule {
     ]);
 
     return chain([
-      addReducerToState({ ...options, flat: true }),
-      addReducerImportToNgModule({ ...options, flat: true }),
+      addReducerToState({ ...options }),
+      addReducerImportToNgModule({ ...options }),
       branchAndMerge(chain([mergeWith(templateSource)])),
     ])(host, context);
   };

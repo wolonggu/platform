@@ -1,4 +1,3 @@
-# @ngrx
+# npm pacakges used
 
-Reactive libraries for Angular
-
+1. @ngrx

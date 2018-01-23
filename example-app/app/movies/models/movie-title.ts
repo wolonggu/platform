@@ -1,1 +1,1 @@
-export class MovieTitle {}
+export interface MovieTitle {}

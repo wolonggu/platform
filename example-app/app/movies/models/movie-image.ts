@@ -1,1 +1,1 @@
-export class MovieImage {}
+export interface MovieImage {}

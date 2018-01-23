@@ -1,1 +1,1 @@
-export class TmdbConfig {}
+export interface TmdbConfig {}

@@ -9,6 +9,8 @@ directories = %w(actions components containers effects models reducers services)
 Dir.chdir moduleDir do
   directories.each do |d|
     FileUtils.mkdir_p d
+    `touch #{d}/.gitkeep`
+    `touch #{d}/index.ts`
   end
 
 end

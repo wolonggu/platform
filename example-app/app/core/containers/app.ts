@@ -13,9 +13,12 @@ import * as Auth from '../../auth/actions/auth';
   template: `
     <bc-layout>
       <bc-sidenav [open]="showSidenav$ | async">
-      <bc-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/admin" icon="security" hint="Admin Dashboard">
-        Admin Dashboard
-      </bc-nav-item>
+        <bc-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/admin" icon="security" hint="Admin Dashboard">
+          Admin Dashboard
+        </bc-nav-item>
+        <bc-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/movies" icon="security" hint="Movie list">
+          Movies
+        </bc-nav-item>
         <bc-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn$ | async" routerLink="/" icon="book" hint="View your book collection">
           My Collection
         </bc-nav-item>

@@ -15,7 +15,9 @@ export class TmdbService {
 
   getMoviesLatest(): Observable<Movie[]> {
     return this.http.get<Movie[]>(
-      `${this.API_PATH}/movie?api_key=${this.config.apiKey}&language=en-US`
+      `${this.API_PATH}/movie/latest?api_key=${
+        this.config.apiKey
+      }&language=en-US`
     );
   }
 

@@ -10,6 +10,10 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'movies',
+    loadChildren: './movies/movies.module#MoviesModule',
+  },
+  {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
   },

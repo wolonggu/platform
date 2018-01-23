@@ -131,6 +131,7 @@
   "dependencies": {
     "@angular/cdk": "^2.0.0-beta.12",
     "bulma": "^0.6.2",
+    "ng-dynamic": "^3.0.2",
     "ng2-charts": "^1.6.0",
     "opencollective": "^1.0.3"
   },

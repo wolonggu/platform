@@ -1,1 +1,3 @@
-export interface TmdbConfig {}
+export interface TmdbConfig {
+  [x: string]: any;
+}

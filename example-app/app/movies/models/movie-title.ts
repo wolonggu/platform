@@ -1,1 +1,3 @@
-export interface MovieTitle {}
+export interface MovieTitle {
+  [x: string]: any;
+}

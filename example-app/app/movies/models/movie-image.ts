@@ -1,1 +1,3 @@
-export interface MovieImage {}
+export interface MovieImage {
+  [x: string]: any;
+}

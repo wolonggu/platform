@@ -13,6 +13,14 @@ export class TmdbService {
 
   constructor(private http: HttpClient, private config: TmdbConfigService) {}
 
+  searchMovies(query: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(
+      `${this.API_PATH}/search/movie?api_key=${
+        this.config.apiKey
+      }&language=en-US&query=${query}`
+    );
+  }
+
   getMoviesLatest(): Observable<Movie[]> {
     return this.http.get<Movie[]>(
       `${this.API_PATH}/movie/latest?api_key=${

@@ -16,7 +16,7 @@ import * as Auth from '../../auth/actions/auth';
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Home</a>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -27,7 +27,7 @@ import * as Auth from '../../auth/actions/auth';
           <a class="nav-link" *ngIf="loggedIn$ | async" routerLink="/movies">Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="loggedIn$ | async" routerLink="/">Browse books</a>
+          <a class="nav-link" *ngIf="loggedIn$ | async" routerLink="/outdoor">Outdoor projects</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" *ngIf="loggedIn$ | async" routerLink="/books/find">Find your books</a>

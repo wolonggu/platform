@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadChildren: './movies/movies.module#MoviesModule',
   },
   {
+    path: 'outdoor',
+    loadChildren: './outdoor/outdoor.module#OutdoorModule',
+  },
+  {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
   },

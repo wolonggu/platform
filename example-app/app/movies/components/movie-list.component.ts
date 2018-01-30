@@ -9,7 +9,8 @@ import { take } from 'rxjs/operators';
 @Component({
   selector: 'bc-movie-list',
   template: `
-  <div class="container">
+  <div class="movie-search-wrapper">
+    <div class="movie-search">
     <mat-card>
       <mat-card-title>Find a movie</mat-card-title>
       <mat-card-content>
@@ -20,22 +21,65 @@ import { take } from 'rxjs/operators';
       </mat-card-content>
       <mat-card-footer><span *ngIf="error$ | async">{{error$ | async}}</span></mat-card-footer>
     </mat-card>
-    <div class="col" *ngFor="let movie of movies | async">
-      <div class="card">
+    </div>
+    <div class="row">
+      <div class="col col-md-4" *ngFor="let movie of movies$ | async">
+        <div class="card">
+          <img class="card-img-top" src="{{ getImgUrl(movie) }}" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">{{ movie.original_title }}</h4>
+            <p class="card-text">{{ movie.overview }}</p>
+          </div>
 
-
+        </div>
       </div>
     </div>
   </div>
 
   `,
-  styles: [],
+  styles: [
+    `
+    :host {
+      flex: 1;
+    }
+
+    mat-card-title,
+    mat-card-content,
+    mat-card-footer {
+      display: flex;
+      justify-content: center;
+    }
+
+    mat-card-footer {
+      color: #FF0000;s
+      padding: 5px 0;
+    }
+
+    .mat-form-field {
+      min-width: 300px;
+    }
+
+    .mat-spinner {
+      position: relative;
+      top: 10px;
+      left: 10px;
+      opacity: 0.0;
+      padding-left: 60px; // Make room for the spinner
+    }
+
+    .mat-spinner.show {
+      opacity: 1.0;
+    }
+    `,
+  ],
 })
 export class MovieListComponent implements OnInit {
   movies$: Observable<Movie[]>;
   searchQuery$: Observable<string>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
+
+  TMDB_IMG_URL = 'https://image.tmdb.org/t/p/w780';
 
   constructor(private store: Store<fromMovies.State>) {
     this.movies$ = store.pipe(select(fromMovies.getSearchResults));
@@ -48,5 +92,9 @@ export class MovieListComponent implements OnInit {
 
   search(query: string) {
     this.store.dispatch(new movie.Search(query));
+  }
+
+  getImgUrl(movie: Movie) {
+    return `${this.TMDB_IMG_URL}${movie.backdrop_path || movie.poster_path}`;
   }
 }

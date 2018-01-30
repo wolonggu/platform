@@ -50,11 +50,13 @@ import * as Auth from '../../auth/actions/auth';
     `
     .wrapper {
       flex: 1;
+      flex-direction: column;
+      display: flex;
     }
 :host {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 `,
   ],

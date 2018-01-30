@@ -35,12 +35,14 @@ import { Component, OnInit } from '@angular/core';
     `
     :host {
       flex: 1;
+      flex-direction: column;
+      display: flex;
     }
     .img-fluid {
       height: 200px;
     }
     .flex-container {
-        height: 100%;
+        flex: 1;
         padding: 0;
         margin: 0;
         display: flex;

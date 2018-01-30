@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'bc-home',
   template: `
     <div class="flex-container">
-        <div class="flex-item">
+        <div class="flex-item logo">
         <img class="img-fluid" src="https://www.outdoorproject.com/sites/all/themes/odp30/images/svg/outdoor-project-logo-white.svg" alt="Outdoor Project">
         </div>
 
@@ -36,6 +36,9 @@ import { Component, OnInit } from '@angular/core';
     :host {
       flex: 1;
     }
+    .img-fluid {
+      height: 200px;
+    }
     .flex-container {
         height: 100%;
         padding: 0;
@@ -61,6 +64,10 @@ import { Component, OnInit } from '@angular/core';
     }
     .center {
       justify-content: center;
+    }
+
+    input[type="email"] {
+      background-color: white;
     }
     `,
   ],

@@ -48,13 +48,13 @@ import * as Auth from '../../auth/actions/auth';
 
   styles: [
     `
-.wrapper: {
+    .wrapper {
+      flex: 1;
+    }
+:host {
   display: flex;
   flex-direction: column;
-  height: 100%;
-},
-.content: {
-  flex: 1;
+  height: 100vh;
 }
 `,
   ],

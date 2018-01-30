@@ -11,7 +11,7 @@ import * as Auth from '../../auth/actions/auth';
   selector: 'bc-app',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-
+<div class="wrapper">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,9 +42,22 @@ import * as Auth from '../../auth/actions/auth';
       </form>
     </div>
   </nav>
-
       <router-outlet></router-outlet>
+      </div>
   `,
+
+  styles: [
+    `
+.wrapper: {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+},
+.content: {
+  flex: 1;
+}
+`,
+  ],
 })
 export class AppComponent {
   showSidenav$: Observable<boolean>;

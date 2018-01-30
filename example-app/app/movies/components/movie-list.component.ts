@@ -1,50 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Movie } from '../models/movie';
+import { Store, select } from '@ngrx/store';
+import * as fromMovies from '../reducers';
+import * as movie from '../actions/movie';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'bc-movie-list',
   template: `
-  <div class="columns is-multiline">
-  <div class="column" *ngFor="let movie of movies">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
-        </div>
-      </div>
+  <div class="container">
+    <mat-card>
+      <mat-card-title>Find a movie</mat-card-title>
+      <mat-card-content>
+        <mat-input-container>
+          <input matInput placeholder="Search for a movie" [value]="searchQuery$ | async" (keyup)="search($event.target.value)">
+        </mat-input-container>
+        <mat-spinner *ngIf="loading$ | async" [diameter]="30" [strokeWidth]="3"></mat-spinner>
+      </mat-card-content>
+      <mat-card-footer><span *ngIf="error$ | async">{{error$ | async}}</span></mat-card-footer>
+    </mat-card>
+    <div class="col" *ngFor="let movie of movies | async">
+      <div class="card">
 
-      <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <a href="#">#css</a> <a href="#">#responsive</a>
-        <br>
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+
       </div>
     </div>
-  </div>
-  </div>
   </div>
 
   `,
   styles: [],
 })
 export class MovieListComponent implements OnInit {
-  constructor() {}
-
   movies$: Observable<Movie[]>;
+  searchQuery$: Observable<string>;
+  loading$: Observable<boolean>;
+  error$: Observable<string>;
+
+  constructor(private store: Store<fromMovies.State>) {
+    this.movies$ = store.pipe(select(fromMovies.getSearchResults));
+    this.searchQuery$ = store.pipe(select(fromMovies.getSearchQuery), take(1));
+    this.loading$ = store.pipe(select(fromMovies.getSearchLoading));
+    this.error$ = store.pipe(select(fromMovies.getSearchError));
+  }
 
   ngOnInit() {}
+
+  search(query: string) {
+    this.store.dispatch(new movie.Search(query));
+  }
 }

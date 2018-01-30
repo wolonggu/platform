@@ -1,3 +1,4 @@
 export interface MovieTitle {
-  [x: string]: any;
+  id: number;
+  titles: any[];
 }

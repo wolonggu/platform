@@ -33,6 +33,9 @@ import { Component, OnInit } from '@angular/core';
   `,
   styles: [
     `
+    :host {
+      flex: 1;
+    }
     .flex-container {
         height: 100%;
         padding: 0;

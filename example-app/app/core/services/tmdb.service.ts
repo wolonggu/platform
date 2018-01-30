@@ -4,29 +4,33 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { MovieImage } from '../../movies/models/movie-image';
 import { MovieTitle } from '../../movies/models/movie-title';
-import { Movie } from '../../movies/models/movie';
+import { Movie, MovieResult } from '../../movies/models/movie';
 import { TmdbConfigService } from '../../movies/services/tmdb-config.service';
 
 @Injectable()
 export class TmdbService {
-  private API_PATH: string = 'https://api.themoviedb.org/3/';
+  private API_PATH: string = 'https://api.themoviedb.org/3';
 
   constructor(private http: HttpClient, private config: TmdbConfigService) {}
 
   searchMovies(query: string): Observable<Movie[]> {
-    return this.http.get<Movie[]>(
-      `${this.API_PATH}/search/movie?api_key=${
-        this.config.apiKey
-      }&language=en-US&query=${query}`
-    );
+    return this.http
+      .get<MovieResult>(
+        `${this.API_PATH}/search/movie?api_key=${
+          this.config.apiKey
+        }&language=en-US&query=${query}`
+      )
+      .pipe(map(data => data['results']));
   }
 
   getMoviesLatest(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(
-      `${this.API_PATH}/movie/latest?api_key=${
-        this.config.apiKey
-      }&language=en-US`
-    );
+    return this.http
+      .get<MovieResult>(
+        `${this.API_PATH}/movie/latest?api_key=${
+          this.config.apiKey
+        }&language=en-US`
+      )
+      .pipe(map(data => data['results']));
   }
 
   getMovieDetail(movie_id: string): Observable<Movie> {

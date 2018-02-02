@@ -14,11 +14,6 @@ import * as Auth from '../../auth/actions/auth';
   <!-- Container for sidebar(s) + page content -->
   <ng-sidebar-container>
 
-    <!-- A sidebar -->
-    <ng-sidebar [(opened)]="_opened">
-      <p>Sidebar contents</p>
-    </ng-sidebar>
-
     <!-- Page content -->
     <div ng-sidebar-content>
     <div class="wrapper">
@@ -83,8 +78,6 @@ export class AppComponent {
   showSidenav$: Observable<boolean>;
   loggedIn$: Observable<boolean>;
 
-  private _opened: boolean = false;
-
   constructor(private store: Store<fromRoot.State>) {
     /**
      * Selectors can be applied with the `select` operator which passes the state
@@ -112,9 +105,5 @@ export class AppComponent {
     this.closeSidenav();
 
     this.store.dispatch(new Auth.Logout());
-  }
-
-  private _toggleSidebar() {
-    this._opened = !this._opened;
   }
 }

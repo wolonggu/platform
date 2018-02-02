@@ -11,6 +11,8 @@ import { MovieEffects } from './effects/movie';
 import { CollectionEffects } from './effects/collection';
 import { NgcFloatButtonModule } from 'ngc-float-button';
 import { RouteComponent } from './containers/route.component';
+import { MovieLatestComponent } from './components/movie-latest.component';
+import { MovieUpcomingComponent } from './components/movie-upcoming.component';
 
 @NgModule({
   imports: [
@@ -52,6 +54,24 @@ import { RouteComponent } from './containers/route.component';
             },
           },
           {
+            path: 'movie-upcoming',
+            component: MovieUpcomingComponent,
+            data: {
+              // Uses text property (Person)
+              breadcrumbs: true,
+              text: 'Popular',
+            },
+          },
+          {
+            path: 'movie-toprated',
+            component: MovieLatestComponent,
+            data: {
+              // Uses text property (Person)
+              breadcrumbs: true,
+              text: 'Popular',
+            },
+          },
+          {
             path: ':id',
             component: MovieComponent,
             data: {
@@ -64,6 +84,12 @@ import { RouteComponent } from './containers/route.component';
       },
     ]),
   ],
-  declarations: [MovieComponent, MovieListComponent, RouteComponent],
+  declarations: [
+    MovieComponent,
+    MovieListComponent,
+    RouteComponent,
+    MovieLatestComponent,
+    MovieUpcomingComponent,
+  ],
 })
 export class MoviesModule {}

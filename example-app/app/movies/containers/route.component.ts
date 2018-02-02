@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
       <a href="#/movies/movie-popular" class="list-group-item list-group-item-action">
         Popular
       </a>
-      <a href="#/movies/movie-popular" class="list-group-item list-group-item-action">Latest</a>
-      <a href="#/movies/movie-popular" class="list-group-item list-group-item-action">Upcoming</a>
+      <a href="#/movies/movie-toprated" class="list-group-item list-group-item-action">Top rated</a>
+      <a href="#/movies/movie-upcoming" class="list-group-item list-group-item-action">Upcoming</a>
       <a href="#/movies" class="list-group-item list-group-item-action">Find a movie</a>
     </div>
     </div>

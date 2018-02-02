@@ -51,7 +51,7 @@ export class CollectionEffects {
     ofType(CollectionActionTypes.LoadPopular),
     switchMap(() =>
       this.tmdbService
-        .getMoviesTopRated()
+        .getMoviesPopular()
         .pipe(
           map((movies: Movie[]) => new LoadPopularSuccess(movies)),
           catchError(error => of(new LoadPopularFail(error)))
@@ -77,7 +77,7 @@ export class CollectionEffects {
     ofType(CollectionActionTypes.LoadUpcoming),
     switchMap(() =>
       this.tmdbService
-        .getMoviesTopRated()
+        .getMoviesUpcoming()
         .pipe(
           map((movies: Movie[]) => new LoadUpcomingSuccess(movies)),
           catchError(error => of(new LoadUpcomingFail(error)))

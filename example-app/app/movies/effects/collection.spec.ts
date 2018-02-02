@@ -7,6 +7,7 @@ import { Database } from '@ngrx/db';
 import { Movie } from '../models/movie';
 import * as collection from '../actions/collection';
 import { Observable } from 'rxjs/Observable';
+import { TmdbService } from '../../core/services/tmdb.service';
 
 export class TestActions extends Actions {
   constructor() {
@@ -44,6 +45,20 @@ describe('CollectionEffects', () => {
           },
         },
         { provide: Actions, useFactory: getActions },
+
+        {
+          provide: TmdbService,
+          useValue: {
+            searchMovies: jest.fn(),
+            getMoviesLatest: jest.fn(),
+            getMoviesPopular: jest.fn(),
+            getMoviesTopRated: jest.fn(),
+            getMoviesUpcoming: jest.fn(),
+            getMovieDetail: jest.fn(),
+            getMovieImages: jest.fn(),
+            getMovieAlternateTitles: jest.fn(),
+          },
+        },
       ],
     });
 

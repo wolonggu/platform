@@ -33,6 +33,36 @@ export class TmdbService {
       .pipe(map(data => data['results']));
   }
 
+  getMoviesPopular(): Observable<Movie[]> {
+    return this.http
+      .get<MovieResult>(
+        `${this.API_PATH}/movie/popular?api_key=${
+          this.config.apiKey
+        }&language=en-US`
+      )
+      .pipe(map(data => data['results']));
+  }
+
+  getMoviesTopRated(): Observable<Movie[]> {
+    return this.http
+      .get<MovieResult>(
+        `${this.API_PATH}/movie/top_rated?api_key=${
+          this.config.apiKey
+        }&language=en-US`
+      )
+      .pipe(map(data => data['results']));
+  }
+
+  getMoviesUpcoming(): Observable<Movie[]> {
+    return this.http
+      .get<MovieResult>(
+        `${this.API_PATH}/movie/upcoming?api_key=${
+          this.config.apiKey
+        }&language=en-US`
+      )
+      .pipe(map(data => data['results']));
+  }
+
   getMovieDetail(movie_id: string): Observable<Movie> {
     return this.http.get<Movie>(
       `${this.API_PATH}/${movie_id}?api_key=${

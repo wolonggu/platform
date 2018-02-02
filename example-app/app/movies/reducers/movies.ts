@@ -16,6 +16,9 @@ import {
  */
 export interface State extends EntityState<Movie> {
   selectedMovieId: string | null;
+  loading: boolean;
+  error: string;
+  movies: Movie[];
 }
 
 /**
@@ -38,6 +41,9 @@ export const adapter: EntityAdapter<Movie> = createEntityAdapter<Movie>({
  */
 export const initialState: State = adapter.getInitialState({
   selectedMovieId: null,
+  loading: false,
+  error: '',
+  movies: [],
 });
 
 export function reducer(
@@ -57,6 +63,15 @@ export function reducer(
          */
         ...adapter.addMany(action.payload, state),
         selectedMovieId: state.selectedMovieId,
+      };
+    }
+
+    case CollectionActionTypes.LoadUpcomingSuccess:
+    case CollectionActionTypes.LoadTopRatedSuccess:
+    case CollectionActionTypes.LoadPopularSuccess: {
+      return {
+        ...state,
+        movies: action.payload,
       };
     }
 
@@ -97,3 +112,5 @@ export function reducer(
  */
 
 export const getSelectedId = (state: State) => state.selectedMovieId;
+
+export const getMovies = (state: State) => state.movies;

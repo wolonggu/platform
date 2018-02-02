@@ -11,6 +11,75 @@ export enum CollectionActionTypes {
   Load = '[Collection] Load',
   LoadSuccess = '[Collection] Load Success',
   LoadFail = '[Collection] Load Fail',
+
+  LoadPopular = '[Collection] LoadPopular',
+  LoadPopularSuccess = '[Collection] LoadPopular Success',
+  LoadPopularFail = '[Collection] LoadPopular Fail',
+
+  LoadUpcoming = '[Collection] LoadUpcoming',
+  LoadUpcomingSuccess = '[Collection] LoadUpcoming Success',
+  LoadUpcomingFail = '[Collection] LoadUpcoming Fail',
+
+  LoadTopRated = '[Collection] LoadTopRated',
+  LoadTopRatedSuccess = '[Collection] LoadTopRated Success',
+  LoadTopRatedFail = '[Collection] LoadTopRated Fail',
+}
+
+/**
+ * LoadUpcoming Collection Actions
+ */
+export class LoadTopRated implements Action {
+  readonly type = CollectionActionTypes.LoadTopRated;
+}
+
+export class LoadTopRatedSuccess implements Action {
+  readonly type = CollectionActionTypes.LoadTopRatedSuccess;
+
+  constructor(public payload: Movie[]) {}
+}
+
+export class LoadTopRatedFail implements Action {
+  readonly type = CollectionActionTypes.LoadTopRatedFail;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * LoadUpcoming Collection Actions
+ */
+export class LoadUpcoming implements Action {
+  readonly type = CollectionActionTypes.LoadUpcoming;
+}
+
+export class LoadUpcomingSuccess implements Action {
+  readonly type = CollectionActionTypes.LoadUpcomingSuccess;
+
+  constructor(public payload: Movie[]) {}
+}
+
+export class LoadUpcomingFail implements Action {
+  readonly type = CollectionActionTypes.LoadUpcomingFail;
+
+  constructor(public payload: any) {}
+}
+
+/**
+ * LoadPopular Collection Actions
+ */
+export class LoadPopular implements Action {
+  readonly type = CollectionActionTypes.LoadPopular;
+}
+
+export class LoadPopularSuccess implements Action {
+  readonly type = CollectionActionTypes.LoadPopularSuccess;
+
+  constructor(public payload: Movie[]) {}
+}
+
+export class LoadPopularFail implements Action {
+  readonly type = CollectionActionTypes.LoadPopularFail;
+
+  constructor(public payload: any) {}
 }
 
 /**
@@ -83,4 +152,13 @@ export type CollectionActions =
   | RemoveMovieFail
   | Load
   | LoadSuccess
-  | LoadFail;
+  | LoadFail
+  | LoadPopular
+  | LoadPopularSuccess
+  | LoadPopularFail
+  | LoadUpcoming
+  | LoadUpcomingSuccess
+  | LoadUpcomingFail
+  | LoadTopRated
+  | LoadTopRatedSuccess
+  | LoadTopRatedFail;

@@ -25,6 +25,8 @@ import { CustomRouterStateSerializer } from './shared/utils';
 import { AppComponent } from './core/containers/app';
 import { environment } from '../environments/environment';
 
+import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
+
 @NgModule({
   imports: [
     CommonModule,

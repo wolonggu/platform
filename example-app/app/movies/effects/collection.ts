@@ -11,6 +11,12 @@ import {
   CollectionActions,
   LoadFail,
   LoadSuccess,
+  LoadPopularFail,
+  LoadPopularSuccess,
+  LoadUpcomingFail,
+  LoadUpcomingSuccess,
+  LoadTopRatedFail,
+  LoadTopRatedSuccess,
   AddMovieSuccess,
   AddMovieFail,
   CollectionActionTypes,
@@ -21,6 +27,7 @@ import {
 } from './../actions/collection';
 import { Movie } from '../models/movie';
 import { switchMap, toArray, map, catchError, mergeMap } from 'rxjs/operators';
+import { TmdbService } from '../../core/services/tmdb.service';
 
 @Injectable()
 export class CollectionEffects {
@@ -38,6 +45,45 @@ export class CollectionEffects {
   openDB$: Observable<any> = defer(() => {
     return this.db.open('movies_app');
   });
+
+  @Effect()
+  loadPopularCollection$: Observable<Action> = this.actions$.pipe(
+    ofType(CollectionActionTypes.LoadPopular),
+    switchMap(() =>
+      this.tmdbService
+        .getMoviesTopRated()
+        .pipe(
+          map((movies: Movie[]) => new LoadPopularSuccess(movies)),
+          catchError(error => of(new LoadPopularFail(error)))
+        )
+    )
+  );
+
+  @Effect()
+  loadTopRatedCollection$: Observable<Action> = this.actions$.pipe(
+    ofType(CollectionActionTypes.LoadTopRated),
+    switchMap(() =>
+      this.tmdbService
+        .getMoviesTopRated()
+        .pipe(
+          map((movies: Movie[]) => new LoadTopRatedSuccess(movies)),
+          catchError(error => of(new LoadTopRatedFail(error)))
+        )
+    )
+  );
+
+  @Effect()
+  loadUpcomingCollection$: Observable<Action> = this.actions$.pipe(
+    ofType(CollectionActionTypes.LoadUpcoming),
+    switchMap(() =>
+      this.tmdbService
+        .getMoviesTopRated()
+        .pipe(
+          map((movies: Movie[]) => new LoadUpcomingSuccess(movies)),
+          catchError(error => of(new LoadUpcomingFail(error)))
+        )
+    )
+  );
 
   @Effect()
   loadCollection$: Observable<Action> = this.actions$.pipe(
@@ -81,5 +127,9 @@ export class CollectionEffects {
     )
   );
 
-  constructor(private actions$: Actions, private db: Database) {}
+  constructor(
+    private actions$: Actions,
+    private db: Database,
+    private tmdbService: TmdbService
+  ) {}
 }

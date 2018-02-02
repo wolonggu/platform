@@ -23,9 +23,12 @@ Object {
       "vote_count": 5238,
     },
   },
+  "error": "",
   "ids": Array [
     "278",
   ],
+  "loading": false,
+  "movies": Array [],
   "selectedMovieId": null,
 }
 `;
@@ -102,10 +105,13 @@ Object {
       "vote_count": 5238,
     },
   },
+  "error": "",
   "ids": Array [
     "278",
     "222",
   ],
+  "loading": false,
+  "movies": Array [],
   "selectedMovieId": null,
 }
 `;
@@ -152,10 +158,13 @@ Object {
       "vote_count": 5238,
     },
   },
+  "error": "",
   "ids": Array [
     "278",
     "222",
   ],
+  "loading": false,
+  "movies": Array [],
   "selectedMovieId": null,
 }
 `;
@@ -355,7 +364,10 @@ exports[`MoviesReducer Selectors getSelectedId should return the selected id 1`]
 exports[`MoviesReducer undefined action should return the default state 1`] = `
 Object {
   "entities": Object {},
+  "error": "",
   "ids": Array [],
+  "loading": false,
+  "movies": Array [],
   "selectedMovieId": null,
 }
 `;

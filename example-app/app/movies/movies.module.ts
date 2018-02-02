@@ -9,18 +9,51 @@ import { reducers } from './reducers';
 import { MaterialModule } from '../material';
 import { MovieEffects } from './effects/movie';
 import { CollectionEffects } from './effects/collection';
+import { NgcFloatButtonModule } from 'ngc-float-button';
+
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
+    NgcFloatButtonModule,
     StoreModule.forFeature('movies', reducers),
     EffectsModule.forFeature([MovieEffects, CollectionEffects]),
     RouterModule.forChild([
-      { path: '', component: MovieListComponent },
-      { path: 'movie-list', component: MovieListComponent },
+      {
+        path: '',
+        component: MovieListComponent,
+        data: {
+          // Uses text property (Person)
+          breadcrumbs: true,
+          text: 'search',
+        },
+      },
+      {
+        path: 'movie-list',
+        component: MovieListComponent,
+        data: {
+          // Uses text property (Person)
+          breadcrumbs: true,
+          text: 'search',
+        },
+      },
+      {
+        path: 'movie-popular',
+        component: MovieComponent,
+        data: {
+          // Uses text property (Person)
+          breadcrumbs: true,
+          text: 'Popular',
+        },
+      },
       {
         path: ':id',
         component: MovieComponent,
+        data: {
+          // Uses text property (Person)
+          breadcrumbs: true,
+          text: 'search',
+        },
       },
     ]),
   ],

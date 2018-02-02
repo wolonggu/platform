@@ -5,12 +5,15 @@ import { Store, select } from '@ngrx/store';
 import * as fromMovies from '../reducers';
 import * as movie from '../actions/movie';
 import { take } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bc-movie-list',
   template: `
   <div class="movie-search-wrapper">
     <div class="movie-search">
+
     <mat-card>
       <mat-card-title>Find a movie</mat-card-title>
       <mat-card-content>
@@ -36,10 +39,21 @@ import { take } from 'rxjs/operators';
     </div>
   </div>
 
+  <ngc-float-button icon="add" [open]="open" [direction]="'bottom'">
+      <ngc-float-item-button icon="person_add" content="float item 1" (click)="gotoMoviesPopular()"></ngc-float-item-button>
+      <ngc-float-item-button  icon="gps_fixed" content="float item 2"></ngc-float-item-button>
+      <ngc-float-item-button icon="mode_edit" content="float item 3"></ngc-float-item-button>
+  </ngc-float-button>
   `,
   styles: [
     `
     :host {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .movie-search-wrapper {
       flex: 1;
     }
 
@@ -81,7 +95,9 @@ export class MovieListComponent implements OnInit {
 
   TMDB_IMG_URL = 'https://image.tmdb.org/t/p/w780';
 
-  constructor(private store: Store<fromMovies.State>) {
+  private open: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  constructor(private store: Store<fromMovies.State>, private router: Router) {
     this.movies$ = store.pipe(select(fromMovies.getSearchResults));
     this.searchQuery$ = store.pipe(select(fromMovies.getSearchQuery), take(1));
     this.loading$ = store.pipe(select(fromMovies.getSearchLoading));
@@ -89,6 +105,10 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  gotoMoviesPopular(): void {
+    this.router.navigateByUrl('/movies/movie-popular');
+  }
 
   search(query: string) {
     this.store.dispatch(new movie.Search(query));

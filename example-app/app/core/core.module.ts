@@ -22,8 +22,17 @@ export const COMPONENTS = [
   ToolbarComponent,
 ];
 
+import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
+import { SidebarModule } from 'ng-sidebar';
+
 @NgModule({
-  imports: [CommonModule, RouterModule, MaterialModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule,
+    McBreadcrumbsModule.forRoot(),
+    SidebarModule.forRoot(),
+  ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })

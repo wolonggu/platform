@@ -61,6 +61,11 @@ export const getSelectedMovieId = createSelector(
   fromMovies.getSelectedId
 );
 
+export const getLoadedMovies = createSelector(
+  getMovieEntitiesState,
+  fromMovies.getMovies
+);
+
 /**
  * Adapters created with @ngrx/entity generate
  * commonly used selector functions including

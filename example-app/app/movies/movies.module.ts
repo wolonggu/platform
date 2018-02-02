@@ -10,6 +10,7 @@ import { MaterialModule } from '../material';
 import { MovieEffects } from './effects/movie';
 import { CollectionEffects } from './effects/collection';
 import { NgcFloatButtonModule } from 'ngc-float-button';
+import { RouteComponent } from './containers/route.component';
 
 @NgModule({
   imports: [
@@ -21,42 +22,48 @@ import { NgcFloatButtonModule } from 'ngc-float-button';
     RouterModule.forChild([
       {
         path: '',
-        component: MovieListComponent,
-        data: {
-          // Uses text property (Person)
-          breadcrumbs: true,
-          text: 'search',
-        },
-      },
-      {
-        path: 'movie-list',
-        component: MovieListComponent,
-        data: {
-          // Uses text property (Person)
-          breadcrumbs: true,
-          text: 'search',
-        },
-      },
-      {
-        path: 'movie-popular',
-        component: MovieComponent,
-        data: {
-          // Uses text property (Person)
-          breadcrumbs: true,
-          text: 'Popular',
-        },
-      },
-      {
-        path: ':id',
-        component: MovieComponent,
-        data: {
-          // Uses text property (Person)
-          breadcrumbs: true,
-          text: 'search',
-        },
+        component: RouteComponent,
+        children: [
+          {
+            path: '',
+            component: MovieListComponent,
+            data: {
+              // Uses text property (Person)
+              breadcrumbs: true,
+              text: 'search',
+            },
+          },
+          {
+            path: 'movie-list',
+            component: MovieListComponent,
+            data: {
+              // Uses text property (Person)
+              breadcrumbs: true,
+              text: 'search',
+            },
+          },
+          {
+            path: 'movie-popular',
+            component: MovieComponent,
+            data: {
+              // Uses text property (Person)
+              breadcrumbs: true,
+              text: 'Popular',
+            },
+          },
+          {
+            path: ':id',
+            component: MovieComponent,
+            data: {
+              // Uses text property (Person)
+              breadcrumbs: true,
+              text: 'search',
+            },
+          },
+        ],
       },
     ]),
   ],
-  declarations: [MovieComponent, MovieListComponent],
+  declarations: [MovieComponent, MovieListComponent, RouteComponent],
 })
 export class MoviesModule {}

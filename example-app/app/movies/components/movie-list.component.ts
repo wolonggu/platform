@@ -39,11 +39,6 @@ import { Router } from '@angular/router';
     </div>
   </div>
 
-  <ngc-float-button icon="add" [open]="open" [direction]="'bottom'">
-      <ngc-float-item-button icon="person_add" content="float item 1" (click)="gotoMoviesPopular()"></ngc-float-item-button>
-      <ngc-float-item-button  icon="gps_fixed" content="float item 2"></ngc-float-item-button>
-      <ngc-float-item-button icon="mode_edit" content="float item 3"></ngc-float-item-button>
-  </ngc-float-button>
   `,
   styles: [
     `
